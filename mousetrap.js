@@ -20,12 +20,12 @@
  * @version 1.6.5
  * @url craig.is/killing/mice
  */
-(function(window, document, undefined) {
+// (function(window, document, undefined) {
 
-    // Check if mousetrap is used inside browser, if not, return
-    if (!window) {
-        return;
-    }
+//     // Check if mousetrap is used inside browser, if not, return
+//     if (!window) {
+//         return;
+//     }
 
     /**
      * mapping of special keycodes to their corresponding keys
@@ -1019,6 +1019,9 @@
         }
         _REVERSE_MAP = null;
     };
+    
+    const mousetrap = Mousetrap();
+    export default mousetrap;
 
     /**
      * Init the global mousetrap functions
@@ -1026,33 +1029,33 @@
      * This method is needed to allow the global mousetrap functions to work
      * now that mousetrap is a constructor function.
      */
-    Mousetrap.init = function() {
-        var documentMousetrap = Mousetrap(document);
-        for (var method in documentMousetrap) {
-            if (method.charAt(0) !== '_') {
-                Mousetrap[method] = (function(method) {
-                    return function() {
-                        return documentMousetrap[method].apply(documentMousetrap, arguments);
-                    };
-                } (method));
-            }
-        }
-    };
+//     Mousetrap.init = function() {
+//         var documentMousetrap = Mousetrap(document);
+//         for (var method in documentMousetrap) {
+//             if (method.charAt(0) !== '_') {
+//                 Mousetrap[method] = (function(method) {
+//                     return function() {
+//                         return documentMousetrap[method].apply(documentMousetrap, arguments);
+//                     };
+//                 } (method));
+//             }
+//         }
+//     };
 
-    Mousetrap.init();
+//     Mousetrap.init();
 
-    // expose mousetrap to the global object
-    window.Mousetrap = Mousetrap;
+//     // expose mousetrap to the global object
+//     window.Mousetrap = Mousetrap;
 
-    // expose as a common js module
-    if (typeof module !== 'undefined' && module.exports) {
-        module.exports = Mousetrap;
-    }
+//     // expose as a common js module
+//     if (typeof module !== 'undefined' && module.exports) {
+//         module.exports = Mousetrap;
+//     }
 
-    // expose mousetrap as an AMD module
-    if (typeof define === 'function' && define.amd) {
-        define(function() {
-            return Mousetrap;
-        });
-    }
-}) (typeof window !== 'undefined' ? window : null, typeof  window !== 'undefined' ? document : null);
+//     // expose mousetrap as an AMD module
+//     if (typeof define === 'function' && define.amd) {
+//         define(function() {
+//             return Mousetrap;
+//         });
+//     }
+// }) (typeof window !== 'undefined' ? window : null, typeof  window !== 'undefined' ? document : null);
